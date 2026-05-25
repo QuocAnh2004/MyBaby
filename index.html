@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday <!-- PLACEHOLDER: SHORT_NAME --> 🎂</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES — ROMANTIC PASTEL PALETTE
+       ============================================================ */
+    :root {
+      --rose:       #f2a7bb;
+      --rose-deep:  #e8748f;
+      --blush:      #fde8ef;
+      --cream:      #fff8f0;
+      --gold:       #c9956e;
+      --gold-light: #f5d9c8;
+      --mauve:      #c9a0b4;
+      --text-dark:  #3d2535;
+      --text-mid:   #7a4f63;
+      --text-light: #b07a92;
+    }
+
+    /* ============================================================
+       GLOBAL RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      max-width: 428px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Soft petal background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(242,167,187,.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(197,150,173,.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(253,232,239,.3) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section { position: relative; z-index: 1; }
+
+    /* ============================================================
+       HERO / HEADER SECTION
+       ============================================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px 80px;
+      text-align: center;
+      background: linear-gradient(170deg, #fff0f5 0%, var(--blush) 50%, #fef3e8 100%);
+      overflow: hidden;
+    }
+
+    /* Floating petals behind hero */
+    .petal {
+      position: absolute;
+      font-size: 1.6rem;
+      opacity: 0;
+      animation: floatPetal linear infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @keyframes floatPetal {
+      0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.5; }
+      100% { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(242,167,187,.5);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      margin-bottom: 28px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.8rem, 12vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    /* PLACEHOLDER: SHORT_NAME is used inside hero-title span */
+    .hero-title .name-accent {
+      color: var(--rose-deep);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-mid);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* Typewriter effect */
+    .typewriter-wrap {
+      margin-bottom: 48px;
+    }
+
+    .typewriter-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.04em;
+      min-height: 1.4em;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: var(--rose-deep);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blinkCursor 0.8s step-end infinite;
+    }
+
+    @keyframes blinkCursor {
+      50% { opacity: 0; }
+    }
+
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: bounceCue 2s ease-in-out infinite;
+      color: var(--rose);
+    }
+
+    .scroll-cue span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    @keyframes bounceCue {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Large rose illustration */
+    .hero-rose {
+      font-size: 5.5rem;
+      margin-bottom: 20px;
+      animation: roseFloat 4s ease-in-out infinite;
+      filter: drop-shadow(0 8px 24px rgba(232,116,143,.35));
+    }
+
+    @keyframes roseFloat {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50%       { transform: translateY(-12px) rotate(5deg); }
+    }
+
+    /* ============================================================
+       TIMELINE SECTION
+       ============================================================ */
+    #timeline {
+      padding: 72px 24px 60px;
+      background: linear-gradient(180deg, #fef3e8 0%, #fff4f7 100%);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    }
+
+    .section-label span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* Timeline track */
+    .timeline-track {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--rose) 0%, var(--gold) 50%, var(--rose-deep) 100%);
+      border-radius: 2px;
+    }
+
+    /* Individual milestone card */
+    .milestone {
+      position: relative;
+      margin-bottom: 44px;
+      padding-left: 40px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .milestone.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Timeline dot */
+    .milestone::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 16px;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border: 3px solid var(--rose-deep);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(242,167,187,.3);
+      z-index: 1;
+    }
+
+    .milestone-card {
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(197,150,173,.2), 0 1px 0 rgba(255,255,255,.9) inset;
+      border: 1px solid rgba(242,167,187,.25);
+    }
+
+    /* Photo area */
+    .milestone-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, var(--blush), var(--gold-light));
+      /* Placeholder colour shown when no real image is set */
+    }
+
+    .milestone-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #fff0f5, #fde8c8);
+      color: var(--text-light);
+    }
+
+    .milestone-photo-placeholder i {
+      font-size: 2.8rem;
+      opacity: 0.55;
+    }
+
+    .milestone-photo-placeholder span {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+
+    .milestone-body {
+      padding: 18px 20px 20px;
+    }
+
+    .milestone-date {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      margin-bottom: 6px;
+    }
+
+    .milestone-heading {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .milestone-caption {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    /* ============================================================
+       INVITATION CARD SECTION
+       ============================================================ */
+    #invitation {
+      padding: 60px 20px 80px;
+      background: linear-gradient(170deg, #fff4f7 0%, #fef3e8 100%);
+    }
+
+    .invite-card {
+      background: white;
+      border-radius: 28px;
+      padding: 36px 28px 40px;
+      box-shadow:
+        0 20px 60px rgba(197,150,173,.25),
+        0 2px 0 rgba(255,255,255,.95) inset,
+        0 -2px 0 rgba(242,167,187,.15) inset;
+      border: 1px solid rgba(242,167,187,.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative corner roses */
+    .invite-card::before {
+      content: '🌸';
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      font-size: 3.5rem;
+      opacity: 0.18;
+      transform: rotate(25deg);
+      pointer-events: none;
+    }
+
+    .invite-card::after {
+      content: '🌸';
+      position: absolute;
+      bottom: -4px;
+      left: -4px;
+      font-size: 3.5rem;
+      opacity: 0.18;
+      transform: rotate(200deg);
+      pointer-events: none;
+    }
+
+    .invite-icon {
+      font-size: 3rem;
+      text-align: center;
+      display: block;
+      margin-bottom: 16px;
+      animation: heartBeat 1.6s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.18); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.1); }
+      56%       { transform: scale(1); }
+    }
+
+    .invite-question {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 32px;
+    }
+
+    /* Button container */
+    .btn-group-invite {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      position: relative;
+      min-height: 56px;
+    }
+
+    /* YES button */
+    .btn-yes {
+      flex: 1;
+      max-width: 160px;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, var(--rose-deep), #d4547a);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(232,116,143,.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-yes:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 10px rgba(232,116,143,.3);
+    }
+
+    /* NO (prank) button */
+    .btn-no {
+      padding: 15px 20px;
+      width: 130px;
+      background: rgba(255,255,255,.8);
+      color: var(--text-light);
+      border: 2px solid rgba(197,150,173,.4);
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      position: absolute;    /* Take out of flow so it can teleport freely */
+      right: 0;
+      /* Starting position handled in JS */
+      transition: none !important;  /* No CSS transition — teleport is instant */
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+      touch-action: none;
+    }
+
+    /* ============================================================
+       INVITATION DETAILS (revealed on YES)
+       ============================================================ */
+    #invite-details {
+      display: none;
+      margin-top: 32px;
+      animation: revealDetails 0.8s cubic-bezier(.22,1,.36,1) forwards;
+    }
+
+    @keyframes revealDetails {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .details-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 24px;
+      color: var(--rose);
+    }
+
+    .details-divider::before,
+    .details-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rose-deep), transparent);
+    }
+
+    .details-divider i { font-size: 1rem; }
+
+    .detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(242,167,187,.2);
+    }
+
+    .detail-row:last-child { border-bottom: none; }
+
+    .detail-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blush), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      color: var(--rose-deep);
+    }
+
+    .detail-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    /* Closing message after YES */
+    .closing-msg {
+      text-align: center;
+      margin-top: 28px;
+      padding: 20px;
+      background: linear-gradient(135deg, #fff0f5, #fef3e8);
+      border-radius: 18px;
+    }
+
+    .closing-msg p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* ============================================================
+       CONFETTI CANVAS
+       ============================================================ */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      text-align: center;
+      padding: 28px 20px 48px;
+      font-size: 0.72rem;
+      color: var(--text-light);
+      letter-spacing: 0.06em;
+    }
+
+    footer .heart-beat {
+      display: inline-block;
+      animation: heartBeat 1.6s ease-in-out infinite;
+    }
+
+    /* ============================================================
+       UTILITY ANIMATIONS
+       ============================================================ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.9s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.30s; }
+    .delay-3 { animation-delay: 0.50s; }
+    .delay-4 { animation-delay: 0.70s; }
+  </style>
+</head>
+
+<body>
+
+<!-- ================================================================
+     CONFETTI CANVAS (full-screen overlay)
+     ================================================================ -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- ================================================================
+     SECTION 1 — HERO / HEADER
+     ================================================================ -->
+<section id="hero">
+
+  <!-- Floating petals (injected by JS) -->
+
+  <div class="hero-badge fade-in-up">
+    <i class="fa-solid fa-star fa-xs"></i>
+    <!-- PLACEHOLDER: EVENT_LABEL — e.g. "Happy Birthday 🎂" or "Một ngày đặc biệt" -->
+    Một ngày đặc biệt
+  </div>
+
+  <div class="hero-rose fade-in-up delay-1">🌹</div>
+
+  <h1 class="hero-title fade-in-up delay-2">
+    Gửi đến
+    <!-- PLACEHOLDER: SHORT_NAME — Replace with her name, e.g. -->
+    <span class="name-accent">Hoài An</span>
+  </h1>
+
+  <p class="hero-subtitle fade-in-up delay-3">
+    <!-- PLACEHOLDER: HERO_SUBTITLE — A short romantic sentence -->
+    Người con gái mà anh trân trọng nhất<br/>trên thế gian này…
+  </p>
+
+  <div class="typewriter-wrap fade-in-up delay-4">
+    <p class="typewriter-text">
+      <span id="typewriter-output"></span><span class="typewriter-cursor"></span>
+    </p>
+  </div>
+
+  <div class="scroll-cue">
+    <i class="fa-solid fa-chevron-down fa-sm"></i>
+    <span>Cuộn xuống</span>
+  </div>
+
+</section>
+
+
+<!-- ================================================================
+     SECTION 2 — TIMELINE (Our Journey)
+     ================================================================ -->
+<section id="timeline">
+
+  <div class="section-label mb-2">
+    <span><i class="fa-regular fa-heart me-1"></i> Hành trình của chúng ta</span>
+  </div>
+
+  <h2 class="section-title">Những kỷ niệm ✨</h2>
+
+  <div class="timeline-track">
+
+    <!-- ── MILESTONE 1 ────────────────────────────────────── -->
+    <div class="milestone" data-delay="0">
+      <div class="milestone-card">
+
+        <!-- PLACEHOLDER: PHOTO_URL_1 — Replace src with a real photo URL, or keep placeholder -->
+        <!-- To use a real photo: <img class="milestone-photo" src="YOUR_PHOTO_URL" alt="Memory 1" /> -->
+        <img class="milestone-photo" src="images/conmeobangdo.jpg" alt="Sinh nhật của em" />
+
+        <div class="milestone-body">
+          <!-- PLACEHOLDER: MILESTONE_1_DATE -->
+          <div class="milestone-date"><i class="fa-regular fa-calendar me-1"></i>Ngày 22 Tháng 3, 2026</div>
+          <!-- PLACEHOLDER: MILESTONE_1_HEADING -->
+          <h3 class="milestone-heading">Lần đầu gặp nhau</h3>
+          <!-- PLACEHOLDER: MILESTONE_1_CAPTION -->
+          <p class="milestone-caption">Anh nhớ mãi cái hôm đó, em mặc quần Jean và anh cũng mặc quần Jean nữa, đúng là matching heading nhờ, mà hôm đó có chị hai em ở nhà anh qua đón em, em kêu im lặng nhỏ tiếng thui sợ chị hai biết mắc cười quá chừng,
+            trước khi đi anh thấy cái băng đô con mèo này hợp với em và cái nơ nữa nên mún xem em sử dụng sẽ hợp đến nhường nào haha.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MILESTONE 2 ────────────────────────────────────── -->
+    <div class="milestone" data-delay="120">
+      <div class="milestone-card">
+
+         <img class="milestone-photo" src="images/anhdoingoaidauhem.jpg" alt="Sinh nhật của em" />
+
+        <div class="milestone-body">
+          <!-- PLACEHOLDER: MILESTONE_2_DATE -->
+          <div class="milestone-date"><i class="fa-regular fa-calendar me-1"></i>Ngày 23 Tháng 3, 2026</div>
+          <!-- PLACEHOLDER: MILESTONE_2_HEADING -->
+          <h3 class="milestone-heading">Lời nói tìm hiểu đầu tiên</h3>
+          <!-- PLACEHOLDER: MILESTONE_2_CAPTION -->
+          <p class="milestone-caption">Lúc đó anh với em đi ăn hủ tíu ở quán có con mèo đen, em hỏi anh về hai đứa mình hiện tại là gì, lúc đó anh cũng giựt mình, nhưng câu trả lời đã có sẵn rồi, anh mới ngỏ lời xin phép được tìm hiểu em 😘.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ── MILESTONE 2 ────────────────────────────────────── -->
+   <div class="milestone" data-delay="120">
+     <div class="milestone-card">
+
+         <img class="milestone-photo" src="images/keo.jpg" alt="Sinh nhật của em" />
+       <div class="milestone-body">
+         <!-- PLACEHOLDER: MILESTONE_2_DATE -->
+         <div class="milestone-date"><i class="fa-regular fa-calendar me-1"></i>Ngày 24 Tháng 3, 2026</div>
+         <!-- PLACEHOLDER: MILESTONE_2_HEADING -->
+         <h3 class="milestone-heading">Món quà đầu tiên</h3>
+         <!-- PLACEHOLDER: MILESTONE_2_CAPTION -->
+         <p class="milestone-caption">Anh nhớ khoảng khắc đó, em đưa tại liệu cho anh để anh ôn luyện học tiếng anh, và với cả marshmallow handmade siêu ngon luôn ui anh nhớ nó xĩu, nhờ có kẹo của anh mà anh có thể học được bài nhiều đêm thức, yêu emm.</p>
+       </div>
+     </div>
+   </div>
+    <!-- ── MILESTONE 2 ────────────────────────────────────── -->
+
+    <!-- ── MILESTONE 2 ────────────────────────────────────── -->
+   <div class="milestone" data-delay="120">
+     <div class="milestone-card">
+
+         <img class="milestone-photo" src="images/how.jpg" alt="Sinh nhật của em" />
+       <div class="milestone-body">
+         <!-- PLACEHOLDER: MILESTONE_2_DATE -->
+         <div class="milestone-date"><i class="fa-regular fa-calendar me-1"></i>Ngày 10 Tháng 4, 2026</div>
+         <!-- PLACEHOLDER: MILESTONE_2_HEADING -->
+         <h3 class="milestone-heading">Em tặng dây nịt và cả áo polo cho anh</h3>
+         <!-- PLACEHOLDER: MILESTONE_2_CAPTION -->
+         <p class="milestone-caption">Anh nhớ khoảng khắc đó, 
+          anh đi dân quân về, lúc 4 giờ sáng, anh vội mở quà của em ra, lúc đó anh bất ngờ lắm 
+          khóc tới 2 chập lun, mít ướt gì đâu á chời luch đó, anh cảm nhận được tình cảm của em dành cho anh nhiều như thế nào qua món quà đó, yêu em nhiều lắm luôn á.</p>
+         </p>
+       </div>
+     </div>
+   </div>
+    <!-- ── MILESTONE 2 ────────────────────────────────────── -->
+   <div class="milestone" data-delay="120">
+     <div class="milestone-card">
+
+         <img class="milestone-photo" src="images/em.jpg" alt="Sinh nhật của em" />
+       <div class="milestone-body">
+         <!-- PLACEHOLDER: MILESTONE_2_DATE -->
+         <div class="milestone-date"><i class="fa-regular fa-calendar me-1"></i>Ngày 26 Tháng 4, 2026</div>
+         <!-- PLACEHOLDER: MILESTONE_2_HEADING -->
+         <h3 class="milestone-heading">Ngày anh xin phép được bước vào cuộc sống của em</h3>
+         <!-- PLACEHOLDER: MILESTONE_2_CAPTION -->
+         <p class="milestone-caption">Ngày đó đúng lúc 08:08 phút tối anh cùng em đi ngắm trăng với cái kính thiên văn của anh, anh thấy em cười vì lần đầu được ngắm trăng anh hạnh phúc lắm.
+          Và anh đã xin phép được bước vào cuộc sống của em, được làm một phần trong cuộc sống của em, được quan tâm em, chăm sóc em, được yêu thương em, được ở bên em, được cùng em trải qua những ngày tháng sắp tới, anh biết đó là một lời xin phép rất lớn lao, nhưng anh thật sự rất nghiêm túc và chân thành, anh muốn được là người đặc biệt của em, không chỉ hôm nay mà còn nhiều ngày sau nữa, yêu em nhiều lắm luôn á.
+         </p>
+         </p>
+       </div>
+     </div>
+   </div>
+    
+
+    <!-- ── MILESTONE 4 ────────────────────────────────────── -->
+    <div class="milestone" data-delay="360">
+      <div class="milestone-card">
+
+     <img class="milestone-photo" src="images/anhvaem.jpg" alt="Sinh nhật của em" />
+
+        <div class="milestone-body">
+          <!-- PLACEHOLDER: MILESTONE_4_DATE -->
+          <div class="milestone-date"><i class="fa-regular fa-calendar me-1"></i> Hôm nay ♥</div>
+          <!-- PLACEHOLDER: MILESTONE_4_HEADING -->
+          <h3 class="milestone-heading">Sinh nhật của em</h3>
+          <!-- PLACEHOLDER: MILESTONE_4_CAPTION -->
+          <p class="milestone-caption">Và hôm nay, ngày đặc biệt nhất trong năm của em, anh muốn làm một điều gì đó thật đặc biệt. Kéo xuống nào… 👇</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.timeline-track -->
+</section>
+
+
+<!-- ================================================================
+     SECTION 3 — INTERACTIVE INVITATION (The Trap)
+     ================================================================ -->
+<section id="invitation">
+
+  <div class="section-label mb-2">
+    <span><i class="fa-solid fa-gift me-1"></i> Lời mời đặc biệt</span>
+  </div>
+
+  <div class="invite-card milestone" data-delay="0" id="invite-card">
+
+    <span class="invite-icon">💌</span>
+
+    <!-- PLACEHOLDER: INVITE_QUESTION — The main question on the card -->
+    <h2 class="invite-question">
+      Sinh nhật này em có muốn đi chơi cùng anh không? ❤️
+    </h2>
+
+    <!-- Button group — the NO button is positioned absolutely and will teleport -->
+    <div class="btn-group-invite" id="btn-group">
+      <button class="btn-yes" id="btn-yes">
+        <i class="fa-solid fa-heart me-2"></i>Dạ muốn
+      </button>
+      <button class="btn-no" id="btn-no">
+        Không 🙅‍♀️
+      </button>
+    </div>
+
+    <!-- ── INVITATION DETAILS (hidden until YES) ────────── -->
+    <div id="invite-details">
+
+      <div class="details-divider">
+        <i class="fa-solid fa-star"></i>
+      </div>
+
+      <h3 class="text-center mb-4" style="font-family:'Dancing Script',cursive; font-size:1.7rem; color:var(--rose-deep)">
+        Yay! 🎉 Anh đang chờ em!
+      </h3>
+
+      <!-- Detail: Date -->
+      <div class="detail-row">
+        <div class="detail-icon"><i class="fa-regular fa-calendar-days"></i></div>
+        <div>
+          <div class="detail-label">Ngày</div>
+          <!-- PLACEHOLDER: PARTY_DATE — e.g. "Chủ Nhật, 15 tháng 6 năm 2025" -->
+          <div class="detail-value">Thứ Ba, 26 tháng 5, 2026</div>
+        </div>
+      </div>
+
+      <!-- Detail: Time -->
+      <div class="detail-row">
+        <div class="detail-icon"><i class="fa-regular fa-clock"></i></div>
+        <div>
+          <div class="detail-label">Giờ</div>
+          <!-- PLACEHOLDER: PARTY_TIME — e.g. "6:00 PM" -->
+          <div class="detail-value">5:00 chiều 🌆</div>
+        </div>
+      </div>
+
+      <!-- Detail: Location -->
+      <div class="detail-row">
+        <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div>
+          <div class="detail-label">Địa điểm</div>
+          <!-- PLACEHOLDER: PARTY_LOCATION — e.g. "Nhà hàng ABC, Quận 1, TP.HCM" -->
+          <div class="detail-value">Nhà hàng Chamie<br/> TP. Hồ Chí Minh</div>
+        </div>
+      </div>
+
+      <!-- Detail: Dress code (optional) -->
+      <div class="detail-row">
+        <div class="detail-icon"><i class="fa-solid fa-shirt"></i></div>
+        <div>
+          <div class="detail-label">Dress code</div>
+          <!-- PLACEHOLDER: DRESS_CODE -->
+          <div class="detail-value">Casual & Cute 💕</div>
+        </div>
+      </div>
+
+      <!-- Closing romantic message -->
+      <div class="closing-msg mt-4">
+        <p>
+          <!-- PLACEHOLDER: CLOSING_MESSAGE -->
+          Anh sẽ đến đón em đúng giờ nhé. Hứa đó. 🌹<br/>
+          <br/>
+          Happy Birthday em yêu — <br/>
+          <!-- PLACEHOLDER: YOUR_NAME — your name here -->
+          <strong style="font-family:'Dancing Script',cursive; font-size:1.2rem; color:var(--rose-deep)">Quốc Anh ❤️ Hoài An</strong>
+        </p>
+      </div>
+
+    </div><!-- /#invite-details -->
+
+  </div><!-- /.invite-card -->
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  Làm với <span class="heart-beat">❤️</span> dành riêng cho em
+  <!-- PLACEHOLDER: SHORT_NAME -->
+</footer>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ================================================================
+   JAVASCRIPT — all interactive logic
+   ================================================================ */
+
+/* ─── 1. FLOATING PETALS ──────────────────────────────────────── */
+(function spawnPetals() {
+  const EMOJIS = ['🌸', '🌹', '✨', '💕', '🌷', '💖'];
+  const hero   = document.getElementById('hero');
+
+  function createPetal() {
+    const el = document.createElement('span');
+    el.className = 'petal';
+    el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+
+    const size     = 1 + Math.random() * 1.2;
+    const left     = Math.random() * 100;
+    const duration = 8 + Math.random() * 10;
+    const delay    = Math.random() * 8;
+
+    el.style.cssText = `
+      left: ${left}%;
+      font-size: ${size}rem;
+      animation-duration: ${duration}s;
+      animation-delay: ${delay}s;
+    `;
+
+    hero.appendChild(el);
+    setTimeout(() => el.remove(), (duration + delay) * 1000);
+  }
+
+  // Initial burst
+  for (let i = 0; i < 8; i++) createPetal();
+  setInterval(createPetal, 1200);
+})();
+
+
+/* ─── 2. TYPEWRITER EFFECT ────────────────────────────────────── */
+(function typewriter() {
+  /* PLACEHOLDER: TYPEWRITER_MESSAGES — edit strings as desired */
+  const messages = [
+    'Cuộn xuống để xem điều bất ngờ nhé em...',
+    'Anh có một điều muốn nói với em... 💬',
+    'Đây là ngày đặc biệt nhất của em đó... 🎂',
+  ];
+
+  const el    = document.getElementById('typewriter-output');
+  let   mIdx  = 0;
+  let   cIdx  = 0;
+  let   isDeleting = false;
+
+  function tick() {
+    const current = messages[mIdx];
+
+    if (!isDeleting) {
+      el.textContent = current.slice(0, ++cIdx);
+      if (cIdx === current.length) {
+        isDeleting = true;
+        setTimeout(tick, 2000);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --cIdx);
+      if (cIdx === 0) {
+        isDeleting = false;
+        mIdx = (mIdx + 1) % messages.length;
+      }
+    }
+
+    setTimeout(tick, isDeleting ? 40 : 65);
+  }
+
+  setTimeout(tick, 1200);
+})();
+
+
+/* ─── 3. SCROLL-TRIGGERED MILESTONE ANIMATIONS ───────────────── */
+(function scrollAnimations() {
+  const milestones = document.querySelectorAll('.milestone');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const delay = parseInt(entry.target.dataset.delay || 0);
+      setTimeout(() => entry.target.classList.add('visible'), delay);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+
+  milestones.forEach(m => observer.observe(m));
+})();
+
+
+/* ─── 4. PRANK "KHÔNG" BUTTON — BULLETPROOF MOBILE ───────────── */
+(function prankButton() {
+  const btnNo    = document.getElementById('btn-no');
+  const card     = document.getElementById('invite-card');
+
+  // We position btn-no absolutely relative to the viewport (fixed approach)
+  // instead of the card, so it can freely escape off to any corner.
+  btnNo.style.position = 'fixed';
+  btnNo.style.zIndex   = '1000';
+
+  // Place button at its natural visual position first
+  function placeAtStart() {
+    const cardRect = card.getBoundingClientRect();
+    btnNo.style.left   = (cardRect.right - btnNo.offsetWidth - 20) + 'px';
+    btnNo.style.top    = (cardRect.top + 200) + 'px';    // approximate question area
+  }
+
+  // Call once layout is ready
+  requestAnimationFrame(placeAtStart);
+
+  // Teleport to a random safe position on screen
+  function teleport() {
+    const vw  = window.innerWidth;
+    const vh  = window.innerHeight;
+    const bw  = btnNo.offsetWidth  || 130;
+    const bh  = btnNo.offsetHeight || 52;
+
+    const maxX = Math.max(0, vw - bw - 8);
+    const maxY = Math.max(0, vh - bh - 8);
+
+    const newX = 8  + Math.floor(Math.random() * maxX);
+    const newY = 80 + Math.floor(Math.random() * (maxY - 80));  // avoid status bar
+
+    btnNo.style.left = newX + 'px';
+    btnNo.style.top  = newY + 'px';
+  }
+
+  // Intercept on BOTH touchstart (mobile) and mouseenter (desktop)
+  btnNo.addEventListener('touchstart', function(e) {
+    e.preventDefault();   // block click from firing
+    teleport();
+  }, { passive: false });
+
+  btnNo.addEventListener('mouseenter', teleport);
+
+  // Safety net: if click somehow fires, teleport again
+  btnNo.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    teleport();
+  });
+})();
+
+
+/* ─── 5. YES BUTTON — CONFETTI + REVEAL ──────────────────────── */
+(function yesButton() {
+  const btnYes    = document.getElementById('btn-yes');
+  const btnNo     = document.getElementById('btn-no');
+  const btnGroup  = document.getElementById('btn-group');
+  const details   = document.getElementById('invite-details');
+  const canvas    = document.getElementById('confetti-canvas');
+  const ctx       = canvas.getContext('2d');
+
+  /* Confetti particle class */
+  class Particle {
+    constructor() { this.reset(true); }
+
+    reset(initial = false) {
+      this.x     = Math.random() * canvas.width;
+      this.y     = initial ? (Math.random() * canvas.height - canvas.height) : -20;
+      this.size  = 5 + Math.random() * 9;
+      this.speedX = (Math.random() - 0.5) * 4;
+      this.speedY = 2.5 + Math.random() * 4;
+      this.rotation     = Math.random() * 360;
+      this.rotationSpeed= (Math.random() - 0.5) * 8;
+      this.opacity = 1;
+      this.shape = Math.random() < 0.4 ? 'heart' : (Math.random() < 0.5 ? 'rect' : 'circle');
+
+      /* PLACEHOLDER: CONFETTI_COLORS — romantic palette */
+      const colors = ['#f2a7bb','#e8748f','#fde8ef','#c9a0b4','#f5d9c8','#ffcce0','#ffe4b5','#ff9eb5'];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.translate(this.x, this.y);
+      ctx.rotate((this.rotation * Math.PI) / 180);
+      ctx.fillStyle = this.color;
+
+      if (this.shape === 'heart') {
+        const s = this.size * 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0, s * 0.3);
+        ctx.bezierCurveTo(-s, -s * 0.4, -s * 2, s * 0.8, 0, s * 1.8);
+        ctx.bezierCurveTo( s * 2, s * 0.8,  s, -s * 0.4, 0, s * 0.3);
+        ctx.fill();
+      } else if (this.shape === 'rect') {
+        ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    update() {
+      this.x         += this.speedX;
+      this.y         += this.speedY;
+      this.rotation  += this.rotationSpeed;
+      this.speedX    += (Math.random() - 0.5) * 0.3;
+
+      if (this.y > canvas.height + 30) this.reset();
+    }
+  }
+
+  let particles = [];
+  let animating = false;
+  let frameId;
+
+  function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function launchConfetti() {
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    for (let i = 0; i < 160; i++) particles.push(new Particle());
+
+    animating = true;
+    let elapsed = 0;
+    let last = performance.now();
+
+    function loop(now) {
+      const dt = now - last;
+      last = now;
+      elapsed += dt;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Fade out after 4s
+      if (elapsed > 4000) {
+        const fade = Math.max(0, 1 - (elapsed - 4000) / 2000);
+        particles.forEach(p => { p.opacity = fade; });
+        if (fade <= 0) {
+          cancelAnimationFrame(frameId);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          animating = false;
+          return;
+        }
+      }
+
+      particles.forEach(p => { p.update(); p.draw(); });
+      frameId = requestAnimationFrame(loop);
+    }
+
+    frameId = requestAnimationFrame(loop);
+  }
+
+  btnYes.addEventListener('click', function() {
+    if (animating) return;
+
+    // Hide buttons, fix no-button gone
+    btnGroup.style.visibility = 'hidden';
+    btnGroup.style.height     = '0';
+    btnGroup.style.overflow   = 'hidden';
+    btnGroup.style.margin     = '0';
+    document.getElementById('btn-no').style.display = 'none';
+
+    // Reveal details
+    details.style.display = 'block';
+
+    // 🎉 Fire confetti
+    launchConfetti();
+
+    // Scroll to details smoothly
+    setTimeout(() => {
+      details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  });
+})();
+
+</script>
+</body>
+</html>

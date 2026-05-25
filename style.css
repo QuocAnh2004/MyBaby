@@ -1,0 +1,228 @@
+/* --- COLOR PALETTE & ROOT VARIABLES --- */
+:root {
+    --pastel-pink: #FFE5EC;
+    --soft-pink: #FFB3C6;
+    --romantic-pink: #FF85A1;
+    --deep-pink: #F72585;
+    --creamy-white: #FFFDF9;
+    --gold: #D4AF37;
+    --rose-gold: #B76E79;
+    --dark-text: #4A3E3D;
+}
+
+/* --- GENERAL RESETS & FONTS --- */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--creamy-white);
+    color: var(--dark-text);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.text-pink { color: var(--romantic-pink); }
+.text-gold { color: var(--gold); }
+.bg-light-pink { background-color: rgba(255, 229, 236, 0.4); }
+.bg-pastel-pink { background-color: var(--pastel-pink); }
+.bg-gold { background-color: var(--rose-gold); }
+.z-max { z-index: 9999; }
+.pointer-events-none { pointer-events: none; }
+
+/* --- HERO SECTION --- */
+.hero-section {
+    min-height: 100vh;
+    background: url('[HERO_IMAGE_BACKGROUND_OPTIONAL_OR_LEAVE_BLANK]') center/cover no-repeat;
+    background-color: var(--pastel-pink); /* Fallback soft color */
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(255,253,249,0.3) 0%, rgba(255,229,236,0.6) 100%);
+}
+
+#typewriter {
+    font-family: 'Georgia', serif;
+    min-height: 2.5em; /* Prevents layout layout jumps while typing */
+    line-height: 1.4;
+}
+
+/* Custom Buttons Styling */
+.btn-custom {
+    background: linear-gradient(135deg, var(--rose-gold), var(--soft-pink));
+    color: white !important;
+    border: none;
+    box-shadow: 0 4px 15px rgba(183, 110, 121, 0.3);
+    transition: all 0.3s ease;
+}
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(183, 110, 121, 0.5);
+}
+
+.pulsing-btn {
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+/* --- TIMELINE SECTION --- */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 3px;
+    background-color: var(--rose-gold);
+    border-radius: 2px;
+}
+
+.timeline {
+    padding: 2rem 0;
+}
+/* Center vertical timeline spine */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 50%;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--pastel-pink), var(--rose-gold), var(--pastel-pink));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin-bottom: 4rem;
+    position: relative;
+    width: 100%;
+}
+
+.timeline-img-wrapper {
+    width: 45%;
+    max-width: 380px;
+}
+.timeline-img-wrapper img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+.timeline-content {
+    width: 45%;
+    border-top: 4px solid var(--soft-pink);
+    transition: transform 0.4s ease;
+}
+
+.timeline-badge {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+}
+
+/* Scroll reveal initial states */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive adjustments for Timeline */
+@media (max-width: 767.98px) {
+    .timeline::before { left: 20px; }
+    .timeline-badge { left: 20px; transform: none; }
+    .timeline-img-wrapper { width: 100%; max-width: 100%; padding-left: 50px; }
+    .timeline-content { width: 100%; padding-left: 50px !important; margin-left: 0; border-left: 4px solid var(--soft-pink); border-top: none; }
+    .timeline-item { flex-direction: column !important; align-items: flex-start !important; }
+}
+
+/* --- INVITATION SECTION & THE IMPOSSIBLE BUTTON --- */
+.invitation-card {
+    background-color: white;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.card-border-frame {
+    position: absolute;
+    top: 15px; bottom: 15px; left: 15px; right: 15px;
+    border: 1px solid var(--gold);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.button-container {
+    min-height: 120px; /* Give space for absolute positioning breakout */
+    width: 100%;
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #FF4B6E, #FF85A1);
+    box-shadow: 0 0 15px rgba(255, 75, 110, 0.4);
+    animation: pulsing-glow 2s infinite;
+    transition: transform 0.2s ease;
+    z-index: 10;
+}
+.btn-yes:hover {
+    transform: scale(1.1) !important;
+}
+
+@keyframes pulsing-glow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 75, 110, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 75, 110, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 75, 110, 0); }
+}
+
+/* Style for the runaway target */
+.btn-no {
+    background-color: #6c757d;
+    color: white;
+    transition: all 0.1s ease-out;
+    z-index: 5;
+}
+
+/* Absolute assignment flag triggered via JavaScript */
+.btn-no.runaway {
+    position: fixed !important;
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+/* Decorative background shapes */
+.bg-decoration-heart {
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.08;
+    z-index: 1;
+}
+.decoration-1 { top: 10%; left: 5%; transform: rotate(-15deg); }
+.decoration-2 { bottom: 15%; right: 5%; transform: rotate(20deg); }
+
+/* --- SUCCESS MODAL --- */
+.bg-modal-romantic {
+    background: linear-gradient(to bottom right, var(--creamy-white), var(--pastel-pink));
+    border-radius: 25px !important;
+}
+.border-start-4 {
+    border-left-width: 4px !important;
+}
+.border-gold {
+    border-left-color: var(--gold) !important;
+}
+.milestone-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
