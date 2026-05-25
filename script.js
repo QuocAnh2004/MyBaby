@@ -1,5 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ─── 1. PHÁT NHẠC NỀN KHI NGƯỜI DÙNG CLICK ───
+    document.addEventListener('click', function() {
+        var audio = document.getElementById('bg-music');
+        if (audio && audio.paused) {
+            audio.play().then(() => {
+                console.log("Nhạc đang phát thành công!");
+            }).catch(function(error) {
+                console.log("Trình duyệt chặn phát nhạc: ", error);
+            });
+        }
+    }, { once: true });
+
     // --- 1. TYPEWRITER EFFECT ---
     const textTarget = document.getElementById("typewriter");
     // PERSONALIZATION PLACEHOLDER
