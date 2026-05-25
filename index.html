@@ -912,11 +912,43 @@
 <audio id="bg-music" src="audio/music.mp3" loop></audio>
 <script>
   /* ─── 0. CLICK TO PLAY MUSIC (ADDED) ────────────────────────── */
+// document.addEventListener('click', function() {
+//   const audio = document.getElementById('bg-music');
+//   if (audio && audio.paused) {
+//     audio.play().then(() => {
+//       console.log("Nhạc nền đã phát thành công!");
+//     }).catch(err => {
+//       console.log("Trình duyệt chặn phát nhạc ngầm: ", err);
+//     });
+//   }
+// }, { once: true });
+/* ─── 0. CLICK TO PLAY MUSIC (FADE-IN EFFECT) ───────────────── */
 document.addEventListener('click', function() {
   const audio = document.getElementById('bg-music');
+  
   if (audio && audio.paused) {
+    // 1. Cài đặt âm lượng ban đầu bằng 0 (im lặng hoàn toàn)
+    audio.volume = 0; 
+    
     audio.play().then(() => {
-      console.log("Nhạc nền đã phát thành công!");
+      console.log("Nhạc nền đã phát, đang tăng dần âm lượng...");
+      
+      // 2. Cấu hình thời gian hiệu ứng fade-in
+      const fadeDuration = 4000; // Thời gian nhạc lớn dần (4000ms = 4 giây)
+      const intervalTime = 100;  // Mỗi 0.1 giây tăng âm lượng một lần
+      const volumeStep = intervalTime / fadeDuration; // Mức tăng mỗi bước
+      
+      // 3. Chạy vòng lặp tăng dần âm lượng
+      const fadeAudio = setInterval(function () {
+        if (audio.volume < 1 - volumeStep) {
+          audio.volume += volumeStep;
+        } else {
+          audio.volume = 1; // Đạt âm lượng tối đa
+          clearInterval(fadeAudio); // Dừng vòng lặp
+          console.log("Âm lượng đã đạt mức tối đa!");
+        }
+      }, intervalTime);
+
     }).catch(err => {
       console.log("Trình duyệt chặn phát nhạc ngầm: ", err);
     });
